@@ -79,4 +79,16 @@ public class UAHClass {
     public Boolean isCourse(String department, String number) {
         return department.equals(this.department) && number.equals(this.number);
     }
+
+    public String getDepartment() {
+        return this.department;
+    }
+
+    public String getBuilding() {
+        return this.building;
+    }
+
+    public String getInstructor() {
+        return this.instructor;
+    }
 }
