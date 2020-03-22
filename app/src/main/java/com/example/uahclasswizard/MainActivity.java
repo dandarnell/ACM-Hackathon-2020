@@ -226,18 +226,41 @@ public class MainActivity extends AppCompatActivity {
         departmentSpinner = findViewById(R.id.departmentSpinner);
         departmentSpinner.setAdapter(departmentAdapter);
 
+        courseNumberEdit = findViewById(R.id.courseNumberEdit);
+
+        listSemesterByCourseButton = findViewById(R.id.listSemesterByCourseButton);
+        listSemesterByCourseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                String department = departmentSpinner.getSelectedItem().toString();
+                StringBuilder results = new StringBuilder();
+
+                for(UAHClass uahClass : uahClasses) {
+                    if(uahClass.isCourse(department, courseNumberEdit.getText().toString()) &&
+                            uahClass.isCurrentSemester()) {
+
+                        results.append("\n\n");
+                        results.append(uahClass.toString(true,true,false));
+                    }
+                }
+
+                searchOutput.setText(results);
+            }
+        });
+
         listByCourseButton = findViewById(R.id.listByCourseButton);
         listByCourseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
             {
-                String department = instructorSpinner.getSelectedItem().toString();
+                String department = departmentSpinner.getSelectedItem().toString();
                 StringBuilder results = new StringBuilder();
 
                 for(UAHClass uahClass : uahClasses) {
                     if(uahClass.isCourse(department, courseNumberEdit.getText().toString())) {
                         results.append("\n\n");
-                        results.append(uahClass.toString(true,false,true));
+                        results.append(uahClass.toString(true,true,true));
                     }
                 }
 
