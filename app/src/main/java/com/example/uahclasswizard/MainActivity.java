@@ -20,14 +20,14 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     private List<UAHClass> uahClasses = new ArrayList<UAHClass>();
 
-    private List<String> departments = new ArrayList<String>();
-    ArrayAdapter<String> departmentAdapter;
-
     private List<String> buildings = new ArrayList<String>();
     ArrayAdapter<String> buildingAdapter;
 
     private List<String> instructors = new ArrayList<String>();
     ArrayAdapter<String> instructorAdapter;
+
+    private List<String> departments = new ArrayList<String>();
+    ArrayAdapter<String> departmentAdapter;
 
     Spinner buildingSpinner;
     Button listByBuildingButton;
@@ -49,6 +49,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initializeUAHClasses() {
+        buildings.add("Select a building");
+        instructors.add("Select an instructor");
+        departments.add("Select a department");
+
         InputStream inputStream = this.getResources().openRawResource(R.raw.uah_classes);
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
 
@@ -72,16 +76,16 @@ public class MainActivity extends AppCompatActivity {
 
                 uahClasses.add(uahClass);
 
-                if(!departments.contains(uahClass.getDepartment())) {
-                    departments.add(uahClass.getDepartment());
-                }
-
                 if(!buildings.contains(uahClass.getBuilding())) {
                     buildings.add(uahClass.getBuilding());
                 }
 
                 if(!instructors.contains(uahClass.getInstructor())) {
                     instructors.add(uahClass.getInstructor());
+                }
+
+                if(!departments.contains(uahClass.getDepartment())) {
+                    departments.add(uahClass.getDepartment());
                 }
             } else {
                 break;
@@ -121,6 +125,24 @@ public class MainActivity extends AppCompatActivity {
         roomNumberEdit = findViewById(R.id.roomNumberEdit);
 
         listSemesterByRoomButton = findViewById(R.id.listSemesterByRoomButton);
+        listSemesterByRoomButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                String building = roomBuildingSpinner.getSelectedItem().toString();
+                String results = new String();
+
+                for(UAHClass uahClass : uahClasses) {
+                    if(uahClass.isRoom(building,roomNumberEdit.getText().toString()) &&
+                        uahClass.isCurrentSemester()) {
+
+                        results += "\n\n" + uahClass.toString();
+                    }
+                }
+
+                searchOutput.setText(results);
+            }
+        });
 
         listByRoomButton = findViewById(R.id.listByRoomButton);
         listByRoomButton.setOnClickListener(new View.OnClickListener() {
@@ -139,6 +161,8 @@ public class MainActivity extends AppCompatActivity {
                 searchOutput.setText(results);
             }
         });
+
+
 
         searchOutput = findViewById(R.id.searchOutput);
     }
