@@ -151,4 +151,21 @@
             android:layout_weight="1"
             android:text="List All" />
     </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="I AM A LIST OF CLASSES" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>
