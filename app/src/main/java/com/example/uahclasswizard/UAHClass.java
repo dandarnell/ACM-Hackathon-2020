@@ -61,10 +61,10 @@ public class UAHClass {
             out = out + "\n  " + this.building + " " + this.roomNumber;
         }
         if(showInstructor) {
-            out = out + "\n  " + this.instructor + "\n";
+            out = out + "\n  " + this.instructor;
         }
         if(showSemester) {
-            out = out + "\n  " + this.term + "\n";
+            out = out + "\n  " + this.term;
         }
         return out;
     }
