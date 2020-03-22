@@ -45,6 +45,20 @@
         android:layout_height="wrap_content"
         android:text="List Classes" />
 
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="5dp" />
+
+    <View
+        android:id="@+id/divider4"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="5dp" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -87,6 +101,20 @@
             android:text="List All" />
     </LinearLayout>
 
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="5dp" />
+
+    <View
+        android:id="@+id/divider5"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="5dp" />
+
     <Spinner
         android:id="@+id/instructorSpinner"
         android:layout_width="match_parent"
@@ -111,6 +139,20 @@
             android:layout_weight="1"
             android:text="List All" />
     </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="5dp" />
+
+    <View
+        android:id="@+id/divider6"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="5dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
