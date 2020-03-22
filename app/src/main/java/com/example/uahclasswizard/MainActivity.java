@@ -37,6 +37,10 @@ public class MainActivity extends AppCompatActivity {
     Button listSemesterByRoomButton;
     Button listByRoomButton;
 
+    Spinner instructorSpinner;
+    Button listSemesterByInstructorButton;
+    Button listByInstructorButton;
+
     TextView searchOutput;
 
     @Override
@@ -98,6 +102,14 @@ public class MainActivity extends AppCompatActivity {
                 this, android.R.layout.simple_spinner_item, buildings);
         buildingAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
+        instructorAdapter = new ArrayAdapter<String>(
+                this, android.R.layout.simple_spinner_item, instructors);
+        instructorAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        departmentAdapter = new ArrayAdapter<String>(
+                this, android.R.layout.simple_spinner_item, departments);
+        departmentAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
         buildingSpinner = findViewById(R.id.buildingSpinner);
         buildingSpinner.setAdapter(buildingAdapter);
 
@@ -107,11 +119,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view)
             {
                 String building = buildingSpinner.getSelectedItem().toString();
-                String results = new String();
+                StringBuilder results = new StringBuilder();
 
                 for(UAHClass uahClass : uahClasses) {
                     if(uahClass.isBuilding(building)) {
-                        results += "\n\n" + uahClass.toString();
+                        results.append("\n\n");
+                        results.append(uahClass.toString());
                     }
                 }
 
@@ -130,13 +143,14 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view)
             {
                 String building = roomBuildingSpinner.getSelectedItem().toString();
-                String results = new String();
+                StringBuilder results = new StringBuilder();
 
                 for(UAHClass uahClass : uahClasses) {
                     if(uahClass.isRoom(building,roomNumberEdit.getText().toString()) &&
                         uahClass.isCurrentSemester()) {
 
-                        results += "\n\n" + uahClass.toString();
+                        results.append("\n\n");
+                        results.append(uahClass.toString());
                     }
                 }
 
@@ -150,11 +164,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view)
             {
                 String building = roomBuildingSpinner.getSelectedItem().toString();
-                String results = new String();
+                StringBuilder results = new StringBuilder();
 
                 for(UAHClass uahClass : uahClasses) {
                     if(uahClass.isRoom(building,roomNumberEdit.getText().toString())) {
-                        results += "\n\n" + uahClass.toString();
+                        results.append("\n\n");
+                        results.append(uahClass.toString());
                     }
                 }
 
@@ -162,7 +177,46 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        instructorSpinner = findViewById(R.id.instructorSpinner);
+        instructorSpinner.setAdapter(instructorAdapter);
 
+        listSemesterByInstructorButton = findViewById(R.id.listSemesterByInstructorButton);
+        listSemesterByInstructorButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                String instructor = instructorSpinner.getSelectedItem().toString();
+                StringBuilder results = new StringBuilder();
+
+                for(UAHClass uahClass : uahClasses) {
+                    if(uahClass.isInstructor(instructor) && uahClass.isCurrentSemester()) {
+                        results.append("\n\n");
+                        results.append(uahClass.toString());
+                    }
+                }
+
+                searchOutput.setText(results);
+            }
+        });
+
+        listByInstructorButton = findViewById(R.id.listByInstructorButton);
+        listByInstructorButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                String instructor = instructorSpinner.getSelectedItem().toString();
+                StringBuilder results = new StringBuilder();
+
+                for(UAHClass uahClass : uahClasses) {
+                    if(uahClass.isInstructor(instructor)) {
+                        results.append("\n\n");
+                        results.append(uahClass.toString());
+                    }
+                }
+
+                searchOutput.setText(results);
+            }
+        });
 
         searchOutput = findViewById(R.id.searchOutput);
     }
