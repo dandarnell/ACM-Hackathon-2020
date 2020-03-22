@@ -35,12 +35,12 @@
     </LinearLayout>
 
     <Spinner
-        android:id="@+id/spinner2"
+        android:id="@+id/buildingSpinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/listByBuildingButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="List Classes" />
@@ -51,13 +51,13 @@
         android:orientation="horizontal">
 
         <Spinner
-            android:id="@+id/spinner3"
+            android:id="@+id/buildingRoomSpinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/roomNumberEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -72,14 +72,14 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/listSemesterByRoomButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="List Classes This Semester" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/listByRoomButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"

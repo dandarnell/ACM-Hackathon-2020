@@ -27,7 +27,15 @@ public class MainActivity extends AppCompatActivity {
         InputStream inputStream = this.getResources().openRawResource(R.raw.uah_classes);
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
 
+
         String line = null;
+
+        try {
+            line = reader.readLine();
+        } catch(IOException ioe) {
+
+        }
+
         while(true) {
             try {
                 line = reader.readLine();
