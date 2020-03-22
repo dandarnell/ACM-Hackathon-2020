@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity" >
+    android:padding="8dp"
+    tools:context=".MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -157,7 +158,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <Spinner
             android:id="@+id/departmentSpinner"
@@ -166,12 +167,12 @@
             android:layout_weight="1" />
 
         <EditText
-            android:id="@+id/classNumberEdit"
+            android:id="@+id/courseNumberEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:hint="Class #"
+            android:hint="Course #"
             android:inputType="textPersonName" />
 
     </LinearLayout>
@@ -179,17 +180,17 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <Button
-            android:id="@+id/listSemesterByClassButton"
+            android:id="@+id/listSemesterByCourseButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="List Sections This Semester" />
 
         <Button
-            android:id="@+id/listByClassButton"
+            android:id="@+id/listByCourseButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"

@@ -41,6 +41,11 @@ public class MainActivity extends AppCompatActivity {
     Button listSemesterByInstructorButton;
     Button listByInstructorButton;
 
+    Spinner departmentSpinner;
+    EditText courseNumberEdit;
+    Button listSemesterByCourseButton;
+    Button listByCourseButton;
+
     TextView searchOutput;
 
     @Override
@@ -124,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
                 for(UAHClass uahClass : uahClasses) {
                     if(uahClass.isBuilding(building)) {
                         results.append("\n\n");
-                        results.append(uahClass.toString());
+                        results.append(uahClass.toString(true,true,true));
                     }
                 }
 
@@ -150,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
                         uahClass.isCurrentSemester()) {
 
                         results.append("\n\n");
-                        results.append(uahClass.toString());
+                        results.append(uahClass.toString(false,true,false));
                     }
                 }
 
@@ -169,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
                 for(UAHClass uahClass : uahClasses) {
                     if(uahClass.isRoom(building,roomNumberEdit.getText().toString())) {
                         results.append("\n\n");
-                        results.append(uahClass.toString());
+                        results.append(uahClass.toString(false,true,true));
                     }
                 }
 
@@ -191,7 +196,7 @@ public class MainActivity extends AppCompatActivity {
                 for(UAHClass uahClass : uahClasses) {
                     if(uahClass.isInstructor(instructor) && uahClass.isCurrentSemester()) {
                         results.append("\n\n");
-                        results.append(uahClass.toString());
+                        results.append(uahClass.toString(true,false,false));
                     }
                 }
 
@@ -210,7 +215,29 @@ public class MainActivity extends AppCompatActivity {
                 for(UAHClass uahClass : uahClasses) {
                     if(uahClass.isInstructor(instructor)) {
                         results.append("\n\n");
-                        results.append(uahClass.toString());
+                        results.append(uahClass.toString(true,false,true));
+                    }
+                }
+
+                searchOutput.setText(results);
+            }
+        });
+
+        departmentSpinner = findViewById(R.id.departmentSpinner);
+        departmentSpinner.setAdapter(departmentAdapter);
+
+        listByCourseButton = findViewById(R.id.listByCourseButton);
+        listByCourseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                String department = instructorSpinner.getSelectedItem().toString();
+                StringBuilder results = new StringBuilder();
+
+                for(UAHClass uahClass : uahClasses) {
+                    if(uahClass.isCourse(department, courseNumberEdit.getText().toString())) {
+                        results.append("\n\n");
+                        results.append(uahClass.toString(true,false,true));
                     }
                 }
 
