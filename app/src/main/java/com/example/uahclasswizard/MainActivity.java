@@ -15,6 +15,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -58,10 +60,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initializeUAHClasses() {
-        buildings.add("Select a building");
-        instructors.add("Select an instructor");
-        departments.add("Select a department");
-
         InputStream inputStream = this.getResources().openRawResource(R.raw.uah_classes);
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
 
@@ -100,6 +98,14 @@ public class MainActivity extends AppCompatActivity {
                 break;
             }
         }
+
+        Collections.sort(buildings);
+        Collections.sort(instructors);
+        Collections.sort(departments);
+
+        buildings.add(0,"Select a building");
+        instructors.add(0,"Select an instructor");
+        departments.add(0,"Select a department");
     }
 
     private void initializeUI() {

@@ -11,7 +11,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:visibility="gone">
 
         <Button
             android:id="@+id/button"
@@ -38,7 +39,7 @@
     <Spinner
         android:id="@+id/buildingSpinner"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="46dp" />
 
     <Button
         android:id="@+id/listByBuildingButton"
@@ -68,7 +69,7 @@
         <Spinner
             android:id="@+id/roomBuildingSpinner"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1" />
 
         <EditText
@@ -119,7 +120,7 @@
     <Spinner
         android:id="@+id/instructorSpinner"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="46dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -163,7 +164,7 @@
         <Spinner
             android:id="@+id/departmentSpinner"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1" />
 
         <EditText
@@ -199,7 +200,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="8dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -209,8 +211,7 @@
             <TextView
                 android:id="@+id/searchOutput"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="I AM A LIST OF CLASSES" />
+                android:layout_height="wrap_content" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
