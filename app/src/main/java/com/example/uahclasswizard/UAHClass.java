@@ -1,25 +1,31 @@
 package com.example.uahclasswizard;
 
+import java.util.Date;
+import java.text.SimpleDateFormat;
+
+
 public class UAHClass {
 
+    private String name;
+    private String crn;
+    private String department;
+    private String number;
+    private String section;
+    private String term;
+    private String credits;
+    private String startTime;
+    private String endTime;
+    private String days;
+    private String startDate;
+    private String endDate;
+    private String building;
+    private String roomNumber;
+    private String instructor;
+
+    private Date startDateObj;
+    private Date endDateObj;
+
     // name,crn,department,number,section,term,credits,start time,end time,days,start date,end date,building,room number,instructor
-
-    String name;
-    String crn;
-    String department;
-    String number;
-    String section;
-    String term;
-    String credits;
-    String startTime;
-    String endTime;
-    String days;
-    String startDate;
-    String endDate;
-    String building;
-    String roomNumber;
-    String instructor;
-
     UAHClass(String csvLine) {
         String[] things = csvLine.split(",");
         this.name = things[0];
@@ -37,6 +43,9 @@ public class UAHClass {
         this.building = things[12];
         this.roomNumber = things[13];
         this.instructor = things[14];
+
+        this.startDateObj = new SimpleDateFormat("MMM dd yyyy").parse(this.startDate);
+        this.endDateObj = new SimpleDateFormat("MMM dd yyyy").parse(this.endDate);
     }
 
     public String toString() {
@@ -44,5 +53,30 @@ public class UAHClass {
                 + "\n  " + this.days + " " + this.startTime + " - " + this.endTime
                 + "\n  " + this.building + " " + this.roomNumber
                 + "\n  " + this.instructor + "\n";
+    }
+
+    public Boolean isAt(Date dateTime) {
+        if (dateTime.before(this.startDateObj))
+            return false;
+        if (dateTime.after(this.endDateObj))
+            return false;
+        // check time TODO
+        return true;
+    }
+
+    public Boolean isInstructor(String instructor) {
+        return instructor.equals(this.instructor);
+    }
+
+    public Boolean isBuilding(String building) {
+        return building.equals(this.building);
+    }
+
+    public Boolean isRoom(String building, String roomNumber) {
+        return building.equals(this.building) && roomNumber.equals(this.roomNumber);
+    }
+
+    public Boolean isCourse(String department, String number) {
+        return department.equals(this.department) && number.equals(this.number);
     }
 }
