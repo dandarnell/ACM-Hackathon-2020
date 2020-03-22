@@ -17,6 +17,8 @@ public class MainActivity extends AppCompatActivity {
 
     private List<UAHClass> uahClasses = new ArrayList<UAHClass>();
 
+    private List<String> buildings = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,5 +53,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
         searchOutput.setText(uahClasses.get(uahClasses.size()-1).toString());
+    }
+
+    private void initializeButtons() {
+
     }
 }
