@@ -1,5 +1,6 @@
 package com.example.uahclasswizard;
 
+import java.text.ParseException;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 
@@ -44,8 +45,13 @@ public class UAHClass {
         this.roomNumber = things[13];
         this.instructor = things[14];
 
-        this.startDateObj = new SimpleDateFormat("MMM dd yyyy").parse(this.startDate);
-        this.endDateObj = new SimpleDateFormat("MMM dd yyyy").parse(this.endDate);
+        try {
+            this.startDateObj = new SimpleDateFormat("MMM dd yyyy").parse(this.startDate);
+            this.endDateObj = new SimpleDateFormat("MMM dd yyyy").parse(this.endDate);
+        } catch(ParseException e) {
+            this.startDateObj = new Date(0);
+            this.endDateObj = new Date(0);
+        }
     }
 
     public String toString() {
@@ -60,7 +66,17 @@ public class UAHClass {
             return false;
         if (dateTime.after(this.endDateObj))
             return false;
+        // check day of week TODO
         // check time TODO
+        return true;
+    }
+
+    public Boolean isCurrentSemester() {
+        Date dateTime = new Date();
+        if (dateTime.before(this.startDateObj))
+            return false;
+        if (dateTime.after(this.endDateObj))
+            return false;
         return true;
     }
 
