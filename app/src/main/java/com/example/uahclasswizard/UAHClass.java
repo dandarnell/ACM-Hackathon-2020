@@ -54,11 +54,19 @@ public class UAHClass {
         }
     }
 
-    public String toString() {
-        return this.name + " - " + this.department + " " + this.number + " - " + this.section
-                + "\n  " + this.days + " " + this.startTime + " - " + this.endTime
-                + "\n  " + this.building + " " + this.roomNumber
-                + "\n  " + this.instructor + "\n";
+    public String toString(boolean showRoom, boolean showInstructor, boolean showSemester) {
+        String out = this.name + " - " + this.department + " " + this.number + " - " + this.section
+                + "\n  " + this.days + " " + this.startTime + " - " + this.endTime;
+        if(showRoom) {
+            out = out + "\n  " + this.building + " " + this.roomNumber;
+        }
+        if(showInstructor) {
+            out = out + "\n  " + this.instructor + "\n";
+        }
+        if(showSemester) {
+            out = out + "\n  " + this.term + "\n";
+        }
+        return out;
     }
 
     public Boolean isAt(Date dateTime) {
